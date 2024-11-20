@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intersection Observer Example</title>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 200vh; /* Make the page tall enough to scroll */
+}
+
+.container {
+  text-align: center;
+}
+
+.spacer {
+  height: 200px; /* Empty space to make scrolling easier */
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: lightcoral;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.box.in-view {
+  opacity: 1;
+  transform: scale(1); 
+  transition: all ease 0.5s;
+}
+
+.box.rotation{
+    transform: rotate(180deg);
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Scroll down to see the effect</h1>
+    <div class="spacer"></div>
+    <div class="box target" id="1">Observe Me!</div>
+    <div class="spacer"></div>
+    <div class="spacer"></div>
+    <div class="box target" id="2">Observe Me!</div>
+    <div class="spacer"></div>
+  </div>
+  
+  <script>
+    // Select the element to be observed
+const targetElement = document.querySelectorAll(".target");
+
+// Set up observer options
+const options = {
+  root: null, // Observe within the viewport
+  rootMargin: '10px', // No additional margin
+  threshold: 0.1 // Trigger when 50% of the element is visible
+};
+
+// Create the observer
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      console.log('Element is in view'+ entry.target.id);
+      entry.target.classList.add('in-view'); // Add class when in view
+      entry.target.classList.add("rotation");
+      console.log("rotation class is added");
+        setTimeout(() => {
+            entry.target.classList.remove("rotation")
+            console.log("rotation class is removed")
+        }, 2000);
+      console.log(entry.target.id);
+    } else {
+      console.log('Element is out of view' + entry.target.id);
+      entry.target.classList.remove('in-view'); // Remove class when out of view
+    }
+  });
+}, options);
+
+// Start observing the target element
+targetElement.forEach((element)=> observer.observe(element))
+  </script>
+</body>
+</html>
