@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Oxanium", sans-serif;
+    background-color: #060F27;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.outline-none {
+    outline: none;
+}
+
+.bg-box {
+    background-color: #0B1838;
+}
+
+.bg-box2 {
+    background-color: #091057;
+}
+
+.search-input {
+    width: 95% !important;
+}
+
+.search-input::placeholder {
+    color: #F8F1DB;
+    font-weight: 500;
+    letter-spacing: .5px;
+}
+
+.search-btn {
+    width: 5%;
+}
+
+.form-pill {
+    max-width: 600px;
+}
+
+.form-pill:focus-within {
+    background-color: #0a1531;
+}
+
+.video-container {
+    width: 550px;
+    height: 800px;
+    aspect-ratio: 16 /9 ;
+
+}
+
+.video-container .swiper{
+    max-width: 500px;
+}
+
+
+.video-container .video-attachments{
+    max-width: 50px;
+}
+
+.swiper-button-disabled{
+    opacity: 0.3;
+}
+
+.swiper-wrapper{
+    object-fit: cover;
+}
+
+.swiper-slide{
+    /* object-fit: cover; */
+}
+
+
+@media screen and (max-width:770px) {
+    
+    .video-navigator{
+        display: none !important;
+    }
+
+    .video-attachments{
+        position: absolute;
+    }
+
+
+}
